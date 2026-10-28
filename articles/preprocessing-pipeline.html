@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn how machine learning preprocessing pipelines handle missing values, categorical encoding, feature scaling, and data leakage."
+  >
+
+  <title>Building a Reliable Preprocessing Pipeline | Yash's Learning Log</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234D73B2'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='34' font-weight='bold' text-anchor='middle' fill='white'%3EY.%3C/text%3E%3C/svg%3E">
+
+  <!-- Apply saved/system theme before the page paints (prevents a white flash in dark mode) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("learning-log-theme");
+        var dark = saved ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.dataset.theme = "dark";
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./article.css">
+  <script src="../script.js" defer></script>
+
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../index.html#articles">Articles</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+      </div>
+
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+        title="Toggle color theme"
+      >
+        <span id="theme-icon" aria-hidden="true">&#9790;</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="article-page" id="main">
+    <a class="article-back" href="../index.html#articles">
+      ← Back to all articles
+    </a>
+
+    <header class="article-header">
+      <p class="article-category">MACHINE LEARNING / FOUNDATIONS</p>
+
+      <h1>Building a Reliable Preprocessing Pipeline</h1>
+
+      <p class="article-subtitle">
+        A practical guide to missing values, categorical encoding,
+        feature scaling, and preventing data leakage before training
+        a machine learning model.
+      </p>
+
+      <div class="article-byline">
+        <span>By Yash</span>
+        <span>•</span>
+        <span>Learning notes</span>
+        <span>•</span>
+        <span>Beginner-friendly</span>
+      </div>
+    </header>
+
+    <nav class="article-toc" aria-label="Table of contents">
+      <h2>In this article</h2>
+      <ul>
+        <li><a href="#why-preprocessing">Why preprocessing matters</a></li>
+        <li><a href="#missing-values">Handling missing values</a></li>
+        <li><a href="#encoding">Encoding categorical features</a></li>
+        <li><a href="#scaling">Feature scaling</a></li>
+        <li><a href="#pipeline">Combining steps into a pipeline</a></li>
+        <li><a href="#leakage">Avoiding data leakage</a></li>
+        <li><a href="#takeaways">Key takeaways</a></li>
+      </ul>
+    </nav>
+
+    <article class="article-body">
+      <p>
+        Training a machine learning model involves more than choosing
+        an algorithm and calling <code>fit()</code>. Real-world datasets
+        often contain missing values, categorical features, inconsistent
+        scales, and other issues that can affect model performance.
+      </p>
+
+      <p>
+        Preprocessing is the process of preparing data so a model can
+        use it appropriately. A well-designed workflow makes the process
+        more consistent, reproducible, and easier to maintain.
+      </p>
+
+      <h2 id="why-preprocessing">1. Why preprocessing matters</h2>
+
+      <p>
+        Consider a dataset containing age, salary, city, and exam score.
+        Some ages may be missing, city is categorical, and salary may
+        have values much larger than age. These features need different
+        kinds of treatment.
+      </p>
+
+      <p>
+        Preprocessing helps address such issues before the model is
+        trained. However, the correct transformation depends on the
+        dataset, the model, and the meaning of each feature.
+      </p>
+
+      <h2 id="missing-values">2. Handling missing values</h2>
+
+      <p>
+        Missing values can prevent certain algorithms from working
+        correctly or cause useful observations to be discarded.
+        Two common approaches are removing incomplete rows and
+        imputing missing values.
+      </p>
+
+      <h3>Mean versus median imputation</h3>
+
+      <ul>
+        <li>
+          <strong>Mean:</strong> the arithmetic average. It can work
+          well for numerical data without strong outliers.
+        </li>
+        <li>
+          <strong>Median:</strong> the middle value after sorting.
+          It is less affected by extreme observations.
+        </li>
+      </ul>
+
+      <p>
+        For example, if most ages in a dataset are between 18 and 30
+        but one value is 100, the mean may be pulled upward. The median
+        may be a more representative choice, depending on the data.
+      </p>
+
+      <h2 id="encoding">3. Encoding categorical features</h2>
+
+      <p>
+        Many machine learning algorithms expect numerical input.
+        Categorical values such as city names therefore need to be
+        represented numerically.
+      </p>
+
+      <h3>One-hot encoding</h3>
+
+      <p>
+        One-hot encoding creates a separate binary feature for each
+        category. For example, a city column containing Delhi, Mumbai,
+        and Chennai can be represented by three indicator columns.
+      </p>
+
+      <h3>Ordinal encoding</h3>
+
+      <p>
+        Ordinal encoding assigns numbers to categories with a meaningful
+        order, such as Low, Medium, and High. The order must be defined
+        deliberately; arbitrary numeric assignments can misrepresent
+        nominal categories.
+      </p>
+
+      <h2 id="scaling">4. Feature scaling</h2>
+
+      <p>
+        Features can have very different numerical ranges. For example,
+        age may range from 18 to 60, while salary may range from
+        thousands to hundreds of thousands.
+      </p>
+
+      <p>
+        Standardization transforms a numerical feature using its mean
+        and standard deviation. Scaling can be important for models
+        such as logistic regression and distance-based algorithms,
+        though it is not equally necessary for every model.
+      </p>
+
+      <pre><code>from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)</code></pre>
+
+      <div class="article-callout">
+        <p>
+          <strong>Important:</strong> fit the scaler on the training
+          data only. Use the fitted scaler to transform validation,
+          test, and future data.
+        </p>
+      </div>
+
+      <h2 id="pipeline">5. Combining steps into a pipeline</h2>
+
+      <p>
+        A pipeline chains preprocessing steps and a model into a single
+        workflow. This reduces repetitive code and helps ensure that
+        the same transformations are applied consistently.
+      </p>
+
+      <pre><code>from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+pipeline = Pipeline([
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler()),
+    ("model", LogisticRegression())
+])
+
+pipeline.fit(X_train, y_train)
+
+predictions = pipeline.predict(X_test)</code></pre>
+
+      <p>
+        This example illustrates a numerical-feature workflow. If the
+        dataset includes categorical columns, those columns should
+        receive appropriate encoding, often through a
+        <code>ColumnTransformer</code> combined with a pipeline.
+      </p>
+
+      <h2 id="leakage">6. Avoiding data leakage</h2>
+
+      <p>
+        Data leakage occurs when information that would not legitimately
+        be available during training influences the model or evaluation.
+        It can produce misleadingly strong test results.
+      </p>
+
+      <p>
+        A common example is calculating imputation values or scaling
+        statistics using the entire dataset before splitting it.
+        The test set then influences the transformations used for training.
+      </p>
+
+      <p>
+        A safer workflow is to split the data first, fit preprocessing
+        steps on the training data, and use those fitted transformations
+        on the test data. Pipelines make this approach easier to preserve,
+        especially during cross-validation.
+      </p>
+
+      <section class="takeaways" id="takeaways">
+        <h2>Key takeaways</h2>
+
+        <ul>
+          <li>Inspect the dataset before choosing preprocessing steps.</li>
+          <li>Choose imputation methods based on the data and its distribution.</li>
+          <li>Use one-hot encoding for nominal categories and ordinal encoding when a meaningful order exists.</li>
+          <li>Scale features when the chosen algorithm benefits from it.</li>
+          <li>Fit preprocessing transformations on training data only.</li>
+          <li>Use pipelines to make workflows consistent and reproducible.</li>
+        </ul>
+      </section>
+
+      <h2>Further reading</h2>
+
+      <ul>
+        <li>
+          <a href="https://scikit-learn.org/stable/modules/impute.html"
+             target="_blank" rel="noopener noreferrer">
+            Scikit-learn: Imputation of missing values
+          </a>
+        </li>
+        <li>
+          <a href="https://scikit-learn.org/stable/modules/preprocessing.html"
+             target="_blank" rel="noopener noreferrer">
+            Scikit-learn: Preprocessing data
+          </a>
+        </li>
+        <li>
+          <a href="https://scikit-learn.org/stable/modules/compose.html"
+             target="_blank" rel="noopener noreferrer">
+            Scikit-learn: Pipelines and composite estimators
+          </a>
+        </li>
+      </ul>
+
+      <div class="article-end">
+        <p>
+          This article is part of Yash's Learning Log — a growing
+          collection of concepts, experiments, and lessons from
+          the journey through computer science.
+        </p>
+
+        <a class="button button-secondary" href="../index.html#articles">
+          ← Return to the knowledge library
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <p>Built with curiosity. Updated through learning.</p>
+
+      <a class="back-to-top" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
+</body>
+</html>
