@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Article Title | Yash's Learning Log</title>
+  <meta name="description" content="A concise summary of what this article teaches.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234D73B2'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='34' font-weight='bold' text-anchor='middle' fill='white'%3EY.%3C/text%3E%3C/svg%3E">
+
+  <!-- Apply saved/system theme before the page paints (prevents a white flash in dark mode) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("learning-log-theme");
+        var dark = saved ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.dataset.theme = "dark";
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./article.css">
+  <script src="../script.js" defer></script>
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../index.html#articles">Articles</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+      </div>
+
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+        title="Toggle color theme"
+      >
+        <span id="theme-icon" aria-hidden="true">&#9790;</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="article-page" id="main">
+    <a class="article-back" href="../index.html#articles">
+      &larr; Back to all articles
+    </a>
+
+    <header class="article-header">
+      <!-- CUSTOMIZE: topic / level. Keep the same style as the cards on the homepage -->
+      <p class="article-category">CATEGORY / LEVEL</p>
+
+      <!-- CUSTOMIZE: article title -->
+      <h1>Article Title Goes Here</h1>
+
+      <!-- CUSTOMIZE: one or two sentences: what the reader will learn -->
+      <p class="article-subtitle">
+        Write a short introduction explaining what this article covers
+        and why the topic matters.
+      </p>
+
+      <div class="article-byline">
+        <span>By Yash</span>
+        <span>&bull;</span>
+        <span>Learning notes</span>
+        <span>&bull;</span>
+        <span>Beginner-friendly</span>
+      </div>
+    </header>
+
+    <!-- Keep these links synchronized with the section IDs below -->
+    <nav class="article-toc" aria-label="Table of contents">
+      <h2>In this article</h2>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#concepts">Core concepts</a></li>
+        <li><a href="#example">Example</a></li>
+        <li><a href="#takeaways">Key takeaways</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </nav>
+
+    <article class="article-body">
+      <section id="introduction">
+        <h2>1. Introduction</h2>
+        <p>
+          Introduce the problem, concept, or question you are exploring.
+          Explain what you want the reader to understand.
+        </p>
+      </section>
+
+      <section id="concepts">
+        <h2>2. Core concepts</h2>
+        <p>
+          Explain the important ideas in your own words. Break complex
+          topics into smaller sections and include examples where useful.
+        </p>
+
+        <h3>First concept</h3>
+        <p>Describe the concept, why it matters, and how it works.</p>
+
+        <!-- Optional highlighted note -->
+        <div class="article-callout">
+          <p><strong>Key idea:</strong> use this for one important point readers should not miss.</p>
+        </div>
+      </section>
+
+      <section id="example">
+        <h2>3. Example or implementation</h2>
+        <p>
+          Include a practical example and explain what each important
+          part does.
+        </p>
+
+<pre><code># Add your example here
+print("Hello, learning log!")</code></pre>
+      </section>
+
+      <section class="takeaways" id="takeaways">
+        <h2>4. Key takeaways</h2>
+        <ul>
+          <li>Summarize the first important lesson.</li>
+          <li>Explain a common mistake or useful insight.</li>
+          <li>Describe what you want to practise next.</li>
+        </ul>
+      </section>
+
+      <section id="references">
+        <h2>References</h2>
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/"
+               target="_blank" rel="noopener noreferrer">MDN Web Docs</a>
+            - replace this with a source relevant to your topic.
+          </li>
+        </ul>
+      </section>
+
+      <div class="article-end">
+        <p>
+          This article is part of Yash's Learning Log, a growing collection
+          of concepts, experiments, and lessons from the journey through
+          computer science.
+        </p>
+
+        <a class="button button-secondary" href="../index.html#articles">
+          &larr; Return to the knowledge library
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <p>Built with curiosity. Updated through learning.</p>
+
+      <a class="back-to-top" href="#top">Back to top &uarr;</a>
+    </div>
+  </footer>
+</body>
+</html>
