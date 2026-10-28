@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Thinking in Linked Lists | Yash's Learning Log</title>
+  <meta name="description" content="A practical guide to linked lists, nodes, references, traversal, insertion, deletion, and Java implementation.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234D73B2'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='34' font-weight='bold' text-anchor='middle' fill='white'%3EY.%3C/text%3E%3C/svg%3E">
+
+  <!-- Apply saved/system theme before the page paints (prevents a white flash in dark mode) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("learning-log-theme");
+        var dark = saved ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.dataset.theme = "dark";
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./article.css">
+  <script src="../script.js" defer></script>
+
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../index.html#articles">Articles</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+      </div>
+
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+        title="Toggle color theme"
+      >
+        <span id="theme-icon" aria-hidden="true">&#9790;</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="article-page" id="main">
+    <a class="article-back" href="../index.html#articles">
+      ← Back to all articles
+    </a>
+
+    <header class="article-header">
+      <p class="article-category">DATA STRUCTURES / PRACTICE</p>
+
+      <h1>Thinking in Linked Lists</h1>
+
+      <p class="article-subtitle">
+        Learning to think in nodes and references: how linked lists work,
+        how to manipulate them, and how to implement them in Java.
+      </p>
+
+      <div class="article-byline">
+        <span>By Yash</span>
+        <span>•</span>
+        <span>Learning notes</span>
+        <span>•</span>
+        <span>Java · DSA fundamentals</span>
+      </div>
+    </header>
+
+    <nav class="article-toc" aria-label="Table of contents">
+      <h2>In this article</h2>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#mental-model">The mental model</a></li>
+        <li><a href="#anatomy">Anatomy of a node</a></li>
+        <li><a href="#java">Implementing in Java</a></li>
+        <li><a href="#traversal">Traversal</a></li>
+        <li><a href="#insertion">Insertion</a></li>
+        <li><a href="#deletion">Deletion</a></li>
+        <li><a href="#complexity">Time complexity</a></li>
+        <li><a href="#mistakes">Common mistakes</a></li>
+        <li><a href="#practice">Practice checklist</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </nav>
+
+    <article class="article-body">
+        <section id="introduction">
+          <h2>1. Introduction</h2>
+
+          <p>
+            Arrays are useful when we need fast access to elements by index.
+            But another data structure approaches storage differently:
+            the linked list.
+          </p>
+
+          <p>
+            A linked list is a sequence of nodes. Each node stores a value
+            and a reference to another node. Instead of relying on adjacent
+            positions in an array, the list connects its elements through
+            references.
+          </p>
+
+          <p>
+            The important skill is not memorizing linked-list code.
+            It is learning to track which node points to which other node
+            as the structure changes.
+          </p>
+        </section>
+
+        <section id="mental-model">
+          <h2>2. The mental model: nodes and connections</h2>
+
+          <p>
+            Imagine three boxes connected by arrows. Each box contains
+            a value, and each arrow indicates which node comes next.
+          </p>
+
+          <pre><code>head
+ |
+ v
+[10 | next] -> [20 | next] -> [30 | null]</code></pre>
+
+          <p>
+            Here, <code>head</code> refers to the first node. That node
+            connects to the second, which connects to the third. The final
+            node points to <code>null</code>, meaning there is no next node.
+          </p>
+
+          <p>
+            The values 10, 20, and 30 are examples. The key idea is the
+            chain of references, not the particular values.
+          </p>
+
+          <h3>Linked lists versus arrays</h3>
+
+          <ul>
+            <li>
+              <strong>Array:</strong> elements are accessed by index,
+              such as <code>arr[2]</code>.
+            </li>
+            <li>
+              <strong>Linked list:</strong> you usually begin at the head
+              and follow references until you reach the desired node.
+            </li>
+            <li>
+              <strong>Array:</strong> inserting into the middle may require
+              shifting elements.
+            </li>
+            <li>
+              <strong>Linked list:</strong> inserting after a known node
+              can require changing only a few references.
+            </li>
+          </ul>
+
+          <p>
+            Linked lists do not automatically make every operation faster.
+            Finding a particular position still takes time because nodes
+            must be visited in sequence.
+          </p>
+        </section>
+
+        <section id="anatomy">
+          <h2>3. Anatomy of a node</h2>
+
+          <p>
+            A basic singly linked-list node contains two things:
+          </p>
+
+          <ul>
+            <li><strong>Data:</strong> the value stored in the node.</li>
+            <li>
+              <strong>Next:</strong> a reference to the next node,
+              or <code>null</code> if there is no next node.
+            </li>
+          </ul>
+
+          <p>
+            The <code>head</code> variable holds a reference to the first
+            node. If the list is empty, <code>head</code> is
+            <code>null</code>.
+          </p>
+
+          <p>
+            A node does not need to know the entire list. It only needs
+            its own data and the reference specified by its structure.
+          </p>
+
+          <h3>Important distinction</h3>
+
+          <p>
+            A reference is not the same thing as a copy of the next node's
+            data. It lets your program reach that node. Changing a
+            reference changes the connections through which the list
+            can be traversed.
+          </p>
+        </section>
+
+        <section id="java">
+          <h2>4. Implementing a linked list in Java</h2>
+
+          <p>
+            Let's start with a minimal node class. This is our own
+            implementation for learning; Java's built-in
+            <code>LinkedList</code> is a separate library class.
+          </p>
+
+          <pre><code>class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}</code></pre>
+
+          <p>What each part means:</p>
+
+          <ul>
+            <li><code>int data</code> stores an integer value.</li>
+            <li><code>Node next</code> can refer to another Node object.</li>
+            <li>
+              <code>Node(int data)</code> is the constructor that runs
+              when we create a node.
+            </li>
+            <li>
+              <code>this.data = data</code> assigns the constructor's
+              argument to the object's field.
+            </li>
+            <li>
+              <code>this.next = null</code> initially leaves the node
+              without a successor.
+            </li>
+          </ul>
+
+          <h3>Creating and connecting nodes</h3>
+
+          <pre><code>Node first = new Node(10);
+Node second = new Node(20);
+Node third = new Node(30);
+
+first.next = second;
+second.next = third;
+
+Node head = first;</code></pre>
+
+          <p>
+            We have created three separate objects and connected them.
+            The <code>head</code> variable now refers to the first node.
+          </p>
+
+          <p>
+            Notice that creating the nodes did not automatically connect
+            them. We explicitly established the references using
+            <code>next</code>.
+          </p>
+        </section>
+
+        <section id="traversal">
+          <h2>5. Traversal: visiting every node</h2>
+
+          <p>
+            Traversal means starting at the head and moving through the
+            list one node at a time until there are no more nodes.
+          </p>
+
+          <pre><code>Node current = head;
+
+while (current != null) {
+    System.out.println(current.data);
+    current = current.next;
+}</code></pre>
+
+          <p>For our example, the output is:</p>
+
+          <pre><code>10
+20
+30</code></pre>
+
+          <p>
+            The critical line is
+            <code>current = current.next;</code>. It advances the
+            reference to the next node.
+          </p>
+
+          <p>
+            If you forget to advance <code>current</code>, the loop
+            repeatedly processes the same node. If you dereference
+            <code>current</code> after it becomes <code>null</code>,
+            Java throws a <code>NullPointerException</code>.
+          </p>
+
+          <p>
+            Traversal takes O(n) time for n nodes because each node is
+            visited at most once.
+          </p>
+        </section>
+
+        <section id="insertion">
+          <h2>6. Insertion: connecting a new node</h2>
+
+          <p>
+            Suppose the list is:
+          </p>
+
+          <pre><code>10 -> 20 -> 30 -> null</code></pre>
+
+          <p>
+            We want to insert 15 after the node containing 10.
+            Let <code>current</code> refer to that node.
+          </p>
+
+          <pre><code>Node newNode = new Node(15);
+
+newNode.next = current.next;
+current.next = newNode;</code></pre>
+
+          <p>
+            The order matters. First, the new node points to the node
+            that used to follow <code>current</code>. Then
+            <code>current</code> points to the new node.
+          </p>
+
+          <p>The resulting list is:</p>
+
+          <pre><code>10 -> 15 -> 20 -> 30 -> null</code></pre>
+
+          <p>
+            If you set <code>current.next = newNode</code> first,
+            without preserving the original successor, you can lose
+            the connection to the rest of the list.
+          </p>
+
+          <h3>What if we insert at the beginning?</h3>
+
+          <pre><code>Node newNode = new Node(5);
+newNode.next = head;
+head = newNode;</code></pre>
+
+          <p>
+            The new node points to the old head, and then
+            <code>head</code> is updated to the new node. This also
+            works when the list was empty.
+          </p>
+        </section>
+
+        <section id="deletion">
+          <h2>7. Deletion: bypassing a node</h2>
+
+          <p>
+            Suppose we want to remove the node containing 20:
+          </p>
+
+          <pre><code>10 -> 20 -> 30 -> null</code></pre>
+
+          <p>
+            If <code>current</code> refers to the node containing 10,
+            we can bypass the next node:
+          </p>
+
+          <pre><code>current.next = current.next.next;</code></pre>
+
+          <p>The resulting chain is:</p>
+
+          <pre><code>10 -> 30 -> null</code></pre>
+
+          <p>
+            The node containing 20 is no longer reachable through this
+            list. Java's garbage collector can eventually reclaim an
+            object when it is no longer reachable and otherwise eligible
+            for collection.
+          </p>
+
+          <p>
+            This one-line operation assumes that
+            <code>current</code> and <code>current.next</code> are
+            non-null. Production code must handle those cases safely.
+          </p>
+
+          <h3>Deleting the head</h3>
+
+          <pre><code>if (head != null) {
+    head = head.next;
+}</code></pre>
+
+          <p>
+            Removing the first node is different because there is no
+            previous node to update. Instead, we move the head reference
+            forward.
+          </p>
+        </section>
+
+        <section id="complexity">
+          <h2>8. Time complexity</h2>
+
+          <p>
+            For a singly linked list with n nodes, the usual complexities
+            are:
+          </p>
+
+          <ul>
+            <li>
+              Access by index: O(n) in the general case.
+            </li>
+            <li>
+              Search by value: O(n).
+            </li>
+            <li>
+              Insert at the head: O(1).
+            </li>
+            <li>
+              Delete the head: O(1).
+            </li>
+            <li>
+              Insert after a node you already have: O(1).
+            </li>
+            <li>
+              Find a position and then insert there: O(n) overall
+              in the general case.
+            </li>
+          </ul>
+
+          <p>
+            These distinctions matter in interviews. An operation may
+            take constant time once the correct node is known, while
+            finding that node may still require a traversal.
+          </p>
+        </section>
+
+        <section id="mistakes">
+          <h2>9. Common mistakes</h2>
+
+          <ul>
+            <li>
+              <strong>Losing the head:</strong> changing the head
+              reference carelessly can make the rest of the list
+              inaccessible.
+            </li>
+            <li>
+              <strong>Breaking the chain:</strong> overwriting a
+              reference before preserving the original successor.
+            </li>
+            <li>
+              <strong>Ignoring an empty list:</strong> accessing
+              <code>head.data</code> when <code>head</code> is null.
+            </li>
+            <li>
+              <strong>Incorrect loop conditions:</strong> dereferencing
+              a null reference or stopping before processing the last
+              node.
+            </li>
+            <li>
+              <strong>Confusing a node with its value:</strong>
+              <code>current</code> refers to a node, while
+              <code>current.data</code> accesses its stored value.
+            </li>
+            <li>
+              <strong>Updating references in the wrong order:</strong>
+              especially during insertion and reversal.
+            </li>
+          </ul>
+        </section>
+
+        <section id="practice">
+          <h2>10. Practice checklist</h2>
+
+          <p>
+            Before moving to more complex linked-list problems, make
+            sure you can explain and implement these operations without
+            copying the examples.
+          </p>
+
+          <ul>
+            <li>Define a Node class and create a few connected nodes.</li>
+            <li>Traverse a list and print every value.</li>
+            <li>Count the number of nodes.</li>
+            <li>Search for a given value.</li>
+            <li>Insert a node at the head.</li>
+            <li>Insert a node after a known node.</li>
+            <li>Delete the head safely.</li>
+            <li>Explain what happens when the list is empty.</li>
+            <li>Draw the references before and after each operation.</li>
+          </ul>
+
+          <p>
+            For each problem, first describe the reference changes in
+            plain language. Then write the Java code. This builds the
+            mental model needed for reversing lists, finding the middle,
+            detecting cycles, and solving other interview problems.
+          </p>
+        </section>
+
+        <section id="references">
+          <h2>11. References</h2>
+
+          <ul>
+            <li>
+              <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html"
+                 target="_blank" rel="noopener noreferrer">
+                Oracle Java Tutorials: Classes and Objects
+              </a>
+              — constructors, fields, and objects.
+            </li>
+            <li>
+              <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html"
+                 target="_blank" rel="noopener noreferrer">
+                Java LinkedList API documentation
+              </a>
+              — Java's built-in linked-list implementation.
+            </li>
+          </ul>
+        </section>
+
+      <div class="article-end">
+        <p>
+          Understanding linked lists takes practice. Return to these notes as you implement each operation and solve problems.
+        </p>
+
+        <a class="button button-secondary" href="../index.html#articles">
+          &larr; Return to the knowledge library
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <p>Built with curiosity. Updated through learning.</p>
+
+      <a class="back-to-top" href="#top">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+</body>
+</html>
