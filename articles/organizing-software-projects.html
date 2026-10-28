@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Understanding How Projects Are Organized | Yash's Learning Log</title>
+  <meta name="description" content="Learn how software project folders, files, modules, and dependencies fit together.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234D73B2'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='34' font-weight='bold' text-anchor='middle' fill='white'%3EY.%3C/text%3E%3C/svg%3E">
+
+  <!-- Apply saved/system theme before the page paints (prevents a white flash in dark mode) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("learning-log-theme");
+        var dark = saved ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.dataset.theme = "dark";
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./article.css">
+  <script src="../script.js" defer></script>
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../index.html#articles">Articles</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+      </div>
+
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+        title="Toggle color theme"
+      >
+        <span id="theme-icon" aria-hidden="true">&#9790;</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="article-page" id="main">
+    <a class="article-back" href="../index.html#articles">
+      ← Back to all articles
+    </a>
+
+    <header class="article-header">
+      <p class="article-category">ENGINEERING / FUNDAMENTALS</p>
+
+      <h1>Understanding How Projects Are Organized</h1>
+
+      <p class="article-subtitle">
+        A practical introduction to project folders, source files,
+        dependencies, and the structure that keeps software maintainable.
+      </p>
+
+      <div class="article-byline">
+        <span>By Yash</span>
+        <span>•</span>
+        <span>Learning notes</span>
+        <span>•</span>
+        <span>Beginner-friendly</span>
+      </div>
+    </header>
+
+    <nav class="article-toc" aria-label="Table of contents">
+      <h2>In this article</h2>
+      <ul>
+<li><a href="#why-structure">Why project structure matters</a></li>
+        <li><a href="#folders">Folders and files</a></li>
+        <li><a href="#example">A sample project</a></li>
+        <li><a href="#dependencies">Dependencies and configuration</a></li>
+        <li><a href="#git">Git and version control</a></li>
+        <li><a href="#takeaways">Key takeaways</a></li>
+      </ul>
+    </nav>
+
+    <article class="article-body">
+
+      <section id="why-structure">
+        <h2>1. Why project structure matters</h2>
+        <p>
+          A software project is more than a collection of code files.
+          Its structure helps developers understand where functionality
+          belongs, how different parts interact, and how to maintain the
+          application as it grows.
+        </p>
+        <p>
+          A clear structure makes it easier to find bugs, add features,
+          test code, and collaborate with other developers.
+        </p>
+      </section>
+
+      <section id="folders">
+        <h2>2. Understanding folders and files</h2>
+        <ul>
+          <li><strong>Source files:</strong> contain the application code.</li>
+          <li><strong>Assets:</strong> contain images, fonts, and other resources.</li>
+          <li><strong>Tests:</strong> contain code that checks expected behavior.</li>
+          <li><strong>Configuration:</strong> defines settings and tool behavior.</li>
+          <li><strong>Documentation:</strong> explains how to use and maintain the project.</li>
+        </ul>
+        <p>
+          Not every project needs every folder. The structure should fit
+          the project's language, tools, and complexity.
+        </p>
+      </section>
+
+      <section id="example">
+        <h2>3. A sample project structure</h2>
+        <pre><code>my-project/
+├── src/
+│   └── Main.java
+├── tests/
+├── README.md
+├── .gitignore
+└── pom.xml</code></pre>
+
+        <p>
+          In this illustrative Java project, <code>src/</code> contains
+          source code, <code>tests/</code> is reserved for tests,
+          <code>README.md</code> documents the project,
+          <code>.gitignore</code> lists files Git should ignore, and
+          <code>pom.xml</code> configures a Maven build.
+        </p>
+
+        <p>
+          Other languages and tools use different conventions. For example,
+          a Python project may use <code>pyproject.toml</code>, while a
+          JavaScript project may use <code>package.json</code>.
+        </p>
+      </section>
+
+      <section id="dependencies">
+        <h2>4. Dependencies and configuration</h2>
+        <p>
+          A dependency is external code or a package that a project relies
+          on. Configuration files help tools identify dependencies, build
+          instructions, and project settings.
+        </p>
+        <p>
+          Keeping configuration explicit makes a project easier to set up
+          on another developer's computer or in a deployment environment.
+        </p>
+      </section>
+
+      <section id="git">
+        <h2>5. Git and version control</h2>
+        <p>
+          Git records changes to files over time. It helps developers review
+          earlier versions, create branches for new work, and collaborate
+          without relying on manually copied project folders.
+        </p>
+        <p>
+          A <code>README.md</code> explains the project to people, while
+          <code>.gitignore</code> helps prevent selected generated files,
+          local settings, or other unwanted files from being tracked.
+        </p>
+      </section>
+
+      <section class="takeaways" id="takeaways">
+        <h2>6. Key takeaways</h2>
+        <ul>
+          <li>Project structure gives code a predictable home.</li>
+          <li>Configuration files help tools build and run applications.</li>
+          <li>Documentation helps other developers understand the project.</li>
+          <li>Git tracks changes and supports collaboration.</li>
+          <li>Choose a structure appropriate to the project rather than adding unnecessary folders.</li>
+        </ul>
+      </section>
+
+      <section id="references">
+        <h2>References</h2>
+        <ul>
+          <li><a href="https://git-scm.com/docs" target="_blank" rel="noopener noreferrer">Git documentation</a></li>
+          <li><a href="https://docs.github.com/en/repositories" target="_blank" rel="noopener noreferrer">GitHub repository documentation</a></li>
+        </ul>
+      </section>
+
+      <div class="article-end">
+        <p>
+          This article is part of Yash's Learning Log, a growing collection of concepts, experiments, and lessons from the journey through computer science.
+        </p>
+
+        <a class="button button-secondary" href="../index.html#articles">
+          &larr; Return to the knowledge library
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <p>Built with curiosity. Updated through learning.</p>
+
+      <a class="back-to-top" href="#top">Back to top &uarr;</a>
+    </div>
+  </footer>
+</body>
+</html>
