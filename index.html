@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Yash's Learning Log — practical technical explanations, coding experiments, and lessons from a journey through computer science and software engineering."
+  >
+
+  <meta name="theme-color" content="#F7F9FD">
+
+  <title>Yash's Learning Log — Technical Notes & Tutorials</title>
+
+  <!-- Link preview when shared on LinkedIn / WhatsApp / X.
+       After deploying, change the URL below to your real site address. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yash's Learning Log">
+  <meta property="og:description" content="Weekly technical notes: machine learning, DSA and software engineering, explained as I learn them.">
+  <meta property="og:url" content="https://YOUR-SITE-URL-HERE/">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Simple favicon (no extra file needed) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234D73B2'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='34' font-weight='bold' text-anchor='middle' fill='white'%3EY.%3C/text%3E%3C/svg%3E">
+
+  <!-- Apply saved/system theme before the page paints, so dark mode never flashes white -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("learning-log-theme");
+        var dark = saved ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.dataset.theme = "dark";
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#articles">Skip to content</a>
+
+  <!-- Navigation -->
+ 
+<header class="site-header">
+  <nav class="navbar container" aria-label="Main navigation">
+    <a class="brand" href="#home">
+      <span class="brand-mark" aria-hidden="true">Y.</span>
+      <span>Yash's Learning Log<span class="brand-period">.</span></span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#articles">Articles</a>
+      <a href="#topics">Topics</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+    </div>
+
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      type="button"
+      aria-label="Toggle color theme"
+      aria-pressed="false"
+      title="Toggle color theme"
+    >
+      <span id="theme-icon" aria-hidden="true">☾</span>
+    </button>
+  </nav>
+</header>
+
+
+  <main>
+    <!-- Hero -->
+    <section class="hero container" id="home">
+      <div class="hero-layout">
+        <div class="hero-content">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            A PERSONAL TECHNICAL PUBLICATION
+          </div>
+
+          <h1>
+            Making sense of
+            <span>what I learn.</span>
+          </h1>
+
+          <p class="hero-description">
+            Practical explanations, coding experiments, and lessons
+            from my journey through computer science and software
+            engineering — documented to help me learn better and
+            help others learn along the way.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#articles">
+              Explore the notes <span aria-hidden="true">↗</span>
+            </a>
+
+            <a class="button button-secondary" href="#about">
+              About this log
+            </a>
+          </div>
+
+          <div class="hero-signature">
+            <span class="status-dot"></span>
+            LEARN · EXPERIMENT · DOCUMENT
+          </div>
+        </div>
+
+        <!-- Learning dashboard -->
+        <aside class="learning-panel">
+          <div class="panel-top">
+            <span class="panel-label">THE LEARNING DESK</span>
+            <span class="panel-index">FIELD NOTES / 001</span>
+          </div>
+
+          <div class="panel-intro">
+            <div class="panel-icon" aria-hidden="true">⌘</div>
+            <div>
+              <h2>Currently exploring</h2>
+              <p>A few areas I'm working on</p>
+            </div>
+          </div>
+
+          <a class="learning-item" href="#topics">
+            <span class="learning-number">01</span>
+            <span class="learning-details">
+              <strong>Machine Learning</strong>
+              <small>Data · Models · Experiments</small>
+            </span>
+            <span class="learning-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="learning-item" href="#topics">
+            <span class="learning-number">02</span>
+            <span class="learning-details">
+              <strong>DSA & Problem Solving</strong>
+              <small>Algorithms · Logic · Patterns</small>
+            </span>
+            <span class="learning-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="learning-item" href="#topics">
+            <span class="learning-number">03</span>
+            <span class="learning-details">
+              <strong>Software Engineering</strong>
+              <small>Code · Tools · Best practices</small>
+            </span>
+            <span class="learning-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <div class="panel-bottom">
+            <span>UNDERSTAND</span>
+            <span>APPLY</span>
+            <span>EXPLAIN</span>
+          </div>
+
+          <div class="panel-decoration" aria-hidden="true">Y/01</div>
+        </aside>
+      </div>
+
+      <div class="hero-bottom">
+        <span>A RECORD OF PROGRESS, ONE CONCEPT AT A TIME.</span>
+        <a href="#articles">SCROLL TO EXPLORE ↓</a>
+      </div>
+    </section>
+
+    <!-- Articles -->
+    <section class="section container" id="articles">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE KNOWLEDGE LIBRARY</p>
+          <h2>Ideas worth understanding.</h2>
+          <p class="section-description">
+            Concepts explained through examples, experiments, and practical lessons.
+          </p>
+        </div>
+
+        <span class="section-index">COLLECTION / 01</span>
+      </div>
+
+      <div class="article-grid">
+        <article class="article-card featured-card">
+          <div class="featured-art" aria-hidden="true">
+            <span class="art-label">ML / NOTES 001</span>
+            <div class="data-visual">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span class="art-caption">DATA → INSIGHT</span>
+          </div>
+
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="tag">MACHINE LEARNING</span>
+              <span>FOUNDATIONS</span>
+            </div>
+
+            <h3>Building a reliable preprocessing pipeline</h3>
+
+            <p>
+              Understand missing values, categorical encoding, feature
+              scaling, and why preprocessing must be handled carefully.
+            </p>
+
+            <div class="card-footer">
+              <span>Learning notes</span>
+              <a href="articles/preprocessing-pipeline.html">
+                Read article <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-visual visual-dsa" aria-hidden="true">
+            <span class="visual-label">DSA / 001</span>
+            <div class="node-chain">
+              <span>01</span>
+              <i></i>
+              <span>02</span>
+              <i></i>
+              <span>03</span>
+            </div>
+            <span class="visual-caption">HEAD → NODE → NEXT</span>
+          </div>
+
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="tag">DATA STRUCTURES</span>
+              <span>PRACTICE</span>
+            </div>
+
+            <h3>Thinking in linked lists</h3>
+
+            <p>
+              Build intuition for node references, pointer manipulation,
+              and common linked-list patterns.
+            </p>
+
+            <div class="card-footer">
+              <span>DSA notes</span>
+              <a href="articles/thinking-in-linked-lists.html">
+                Read article <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-visual visual-code" aria-hidden="true">
+            <span class="visual-label">ENGINEERING / 001</span>
+            <div class="code-decoration">
+              <span>01</span> <i></i><b></b>
+              <span>02</span> <i></i><em></em>
+              <span>03</span> <i></i><b></b>
+              <span>04</span> <i></i><em></em>
+            </div>
+            <span class="visual-caption">WRITE. TEST. IMPROVE.</span>
+          </div>
+
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="tag">ENGINEERING</span>
+              <span>FUNDAMENTALS</span>
+            </div>
+
+            <h3>Understanding how projects are organized</h3>
+
+            <p>
+              Explore source files, version control, and the small
+              decisions that make code easier to maintain.
+            </p>
+
+            <div class="card-footer">
+              <span>Engineering notes</span>
+              <a href="articles/organizing-software-projects.html">
+                Read article <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Topics -->
+    <section class="section topics-section" id="topics">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">AREAS OF EXPLORATION</p>
+            <h2>What I'm learning.</h2>
+            <p class="section-description">
+              A growing collection of ideas, tools, and practical skills.
+            </p>
+          </div>
+
+          <span class="section-index">DIRECTORY / 02</span>
+        </div>
+
+        <div class="topic-grid">
+          <a class="topic-card" href="#articles">
+            <span class="topic-number">01 / ML</span>
+            <h3>Machine Learning</h3>
+            <p>Data preparation, models, evaluation, and experiments.</p>
+            <span class="topic-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="topic-card" href="#articles">
+            <span class="topic-number">02 / DSA</span>
+            <h3>Problem Solving</h3>
+            <p>Algorithms, data structures, patterns, and complexity.</p>
+            <span class="topic-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="topic-card" href="#articles">
+            <span class="topic-number">03 / SWE</span>
+            <h3>Software Engineering</h3>
+            <p>Programming, development tools, and engineering practices.</p>
+            <span class="topic-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="topic-card" href="#projects">
+            <span class="topic-number">04 / LAB</span>
+            <h3>Projects & Experiments</h3>
+            <p>Things built, problems solved, and lessons learned.</p>
+            <span class="topic-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section container about-section" id="about">
+      <div class="about-marker" aria-hidden="true">ABOUT / Y</div>
+
+      <p class="eyebrow">A NOTE ABOUT THIS SPACE</p>
+      <h2>Learning is a process worth documenting.</h2>
+
+      <p class="about-copy">
+        I'm a computer science student working toward becoming a
+        well-rounded software engineer. This log is where I turn what
+        I study into explanations, experiments, and reusable technical
+        notes. My goal is to understand concepts deeply, build things
+        with them, and share what I learn along the way.
+      </p>
+
+      <div class="about-principles">
+        <span>01. Understand deeply</span>
+        <span>02. Build practically</span>
+        <span>03. Explain clearly</span>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section projects-section" id="projects">
+      <div class="container projects-layout">
+        <div>
+          <p class="eyebrow">BEYOND THE NOTES</p>
+          <h2>Learning through building.</h2>
+        </div>
+
+        <div class="projects-content">
+          <p>
+            Projects document the practical side of learning:
+            the problem, the implementation, the challenges, and
+            the decisions behind the result.
+          </p>
+
+          <a
+            class="button button-secondary"
+            href="https://github.com/yasasri-veduru/learning-log"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Explore GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <p>Built with curiosity. Updated through learning.</p>
+
+      <a class="back-to-top" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
