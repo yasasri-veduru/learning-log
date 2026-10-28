@@ -1,0 +1,203 @@
+/* ========================================
+   Yash's Learning Log - Article styles
+   Shared by every article page.
+   Uses only the design tokens from ../style.css
+   (--surface, --surface-alt, --border, --accent ...)
+   so light and dark mode always match the homepage.
+======================================== */
+
+.article-page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 64px 24px 100px;
+}
+
+.article-back {
+  display: inline-block;
+  margin-bottom: 34px;
+  color: var(--accent-hover);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.article-header {
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.article-category {
+  color: var(--accent-hover);
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 1.2px;
+}
+
+.article-header h1 {
+  margin: 16px 0;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: -1.8px;
+}
+
+.article-subtitle {
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.article-byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.article-body {
+  padding-top: 36px;
+}
+
+.article-body h2 {
+  margin-top: 46px;
+  margin-bottom: 14px;
+  font-size: 1.7rem;
+  line-height: 1.35;
+  letter-spacing: -0.5px;
+  scroll-margin-top: 100px;
+}
+
+.article-body h3 {
+  margin-top: 30px;
+  font-size: 1.2rem;
+}
+
+.article-body p,
+.article-body li {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.article-body strong {
+  color: var(--text);
+}
+
+.article-body ul,
+.article-body ol {
+  padding-left: 24px;
+}
+
+.article-body li {
+  margin-bottom: 8px;
+}
+
+.article-body pre {
+  overflow-x: auto;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.article-body code {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.article-body p code,
+.article-body li code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--surface-alt);
+  color: var(--accent-hover);
+  font-size: 0.9em;
+}
+
+.article-callout {
+  margin-block: 26px;
+  padding: 20px 22px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--surface-alt);
+}
+
+.article-callout p {
+  margin: 0;
+}
+
+.article-toc {
+  margin-block: 30px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.article-toc h2 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+}
+
+.article-toc ul {
+  margin-bottom: 0;
+}
+
+.article-toc a {
+  color: var(--accent-hover);
+}
+
+.takeaways {
+  margin-top: 48px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.takeaways h2 {
+  margin-top: 0;
+}
+
+.article-end {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+  .article-page {
+    padding: 40px 20px 70px;
+  }
+
+  .article-body h2 {
+    font-size: 1.45rem;
+  }
+
+  .article-body pre {
+    padding: 15px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Links inside article text */
+.article-body a {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-body a:hover {
+  color: var(--accent);
+}
+
+/* Closing block at the end of an article */
+.article-end h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+.article-end p {
+  margin-top: 0;
+}
