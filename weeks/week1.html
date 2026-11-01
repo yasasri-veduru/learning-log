@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Week 1: Foundations | Yash's Learning Log</title>
+  <meta name="description" content="Week 1 of my learning log: preprocessing pipelines, linked lists, and how software projects are organized.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234D73B2'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='34' font-weight='bold' text-anchor='middle' fill='white'%3EY.%3C/text%3E%3C/svg%3E">
+
+  <!-- Apply saved/system theme before the page paints (prevents a white flash in dark mode) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("learning-log-theme");
+        var dark = saved ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.dataset.theme = "dark";
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../articles/article.css">
+  <script src="../script.js" defer></script>
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../index.html#articles">Articles</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+      </div>
+
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+        title="Toggle color theme"
+      >
+        <span id="theme-icon" aria-hidden="true">&#9790;</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="article-page" id="main">
+    <a class="article-back" href="../index.html#articles">
+      &larr; Back to the weekly log
+    </a>
+
+    <header class="article-header">
+      <p class="article-category">WEEK 1 / FOUNDATIONS</p>
+
+      <h1>Week 1: Foundations</h1>
+
+      <p class="article-subtitle">
+        My first week of notes: cleaning data for machine learning,
+        thinking in linked lists, and how software projects are organized.
+      </p>
+
+      <div class="article-byline">
+        <span>By Yash</span>
+        <span>&bull;</span>
+        <span>3 articles</span>
+        <span>&bull;</span>
+        <span>Beginner-friendly</span>
+      </div>
+    </header>
+
+    <section class="week-articles" aria-label="Articles from Week 1">
+      <div class="article-grid">
+        <article class="article-card featured-card">
+          <div class="featured-art" aria-hidden="true">
+            <span class="art-label">ML / NOTES 001</span>
+            <div class="data-visual">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span class="art-caption">DATA → INSIGHT</span>
+          </div>
+
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="tag">MACHINE LEARNING</span>
+              <span>FOUNDATIONS</span>
+            </div>
+
+            <h3>Building a reliable preprocessing pipeline</h3>
+
+            <p>
+              Understand missing values, categorical encoding, feature
+              scaling, and why preprocessing must be handled carefully.
+            </p>
+
+            <div class="card-footer">
+              <span>Learning notes</span>
+              <a href="../articles/preprocessing-pipeline.html">
+                Read article <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-visual visual-dsa" aria-hidden="true">
+            <span class="visual-label">DSA / 001</span>
+            <div class="node-chain">
+              <span>01</span>
+              <i></i>
+              <span>02</span>
+              <i></i>
+              <span>03</span>
+            </div>
+            <span class="visual-caption">HEAD → NODE → NEXT</span>
+          </div>
+
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="tag">DATA STRUCTURES</span>
+              <span>PRACTICE</span>
+            </div>
+
+            <h3>Thinking in linked lists</h3>
+
+            <p>
+              Build intuition for node references, pointer manipulation,
+              and common linked-list patterns.
+            </p>
+
+            <div class="card-footer">
+              <span>DSA notes</span>
+              <a href="../articles/thinking-in-linked-lists.html">
+                Read article <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-visual visual-code" aria-hidden="true">
+            <span class="visual-label">ENGINEERING / 001</span>
+            <div class="code-decoration">
+              <span>01</span> <i></i><b></b>
+              <span>02</span> <i></i><em></em>
+              <span>03</span> <i></i><b></b>
+              <span>04</span> <i></i><em></em>
+            </div>
+            <span class="visual-caption">WRITE. TEST. IMPROVE.</span>
+          </div>
+
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="tag">ENGINEERING</span>
+              <span>FUNDAMENTALS</span>
+            </div>
+
+            <h3>Understanding how projects are organized</h3>
+
+            <p>
+              Explore source files, version control, and the small
+              decisions that make code easier to maintain.
+            </p>
+
+            <div class="card-footer">
+              <span>Engineering notes</span>
+              <a href="../articles/organizing-software-projects.html">
+                Read article <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark" aria-hidden="true">Y.</span>
+        <span>Yash's Learning Log<span class="brand-period">.</span></span>
+      </a>
+
+      <p>Built with curiosity. Updated through learning.</p>
+
+      <a class="back-to-top" href="#top">Back to top &uarr;</a>
+    </div>
+  </footer>
+</body>
+</html>
