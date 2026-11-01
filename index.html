@@ -169,128 +169,66 @@
       </div>
     </section>
 
-    <!-- Articles -->
+    <!-- Weekly log -->
     <section class="section container" id="articles">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">THE KNOWLEDGE LIBRARY</p>
-          <h2>Ideas worth understanding.</h2>
+          <p class="eyebrow">THE WEEKLY LOG</p>
+          <h2>One week at a time.</h2>
           <p class="section-description">
-            Concepts explained through examples, experiments, and practical lessons.
+            Each week's notes are collected in one place. Open a week to
+            read everything I learned.
           </p>
         </div>
 
-        <span class="section-index">COLLECTION / 01</span>
+        <span class="section-index">WEEKS / 01</span>
       </div>
 
-      <div class="article-grid">
-        <article class="article-card featured-card">
-          <div class="featured-art" aria-hidden="true">
-            <span class="art-label">ML / NOTES 001</span>
-            <div class="data-visual">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <span class="art-caption">DATA → INSIGHT</span>
+      <div class="week-list">
+        <!-- To add a new week: copy this card, change the number, text and link -->
+        <a class="week-card" href="weeks/week-1.html">
+          <div class="week-badge" aria-hidden="true">
+            <span>WEEK</span>
+            <strong>01</strong>
           </div>
 
-          <div class="article-content">
+          <div class="week-body">
             <div class="article-meta">
-              <span class="tag">MACHINE LEARNING</span>
-              <span>FOUNDATIONS</span>
+              <span class="tag">FOUNDATIONS</span>
+              <span>3 ARTICLES</span>
             </div>
 
-            <h3>Building a reliable preprocessing pipeline</h3>
+            <h3>Week 1: Foundations</h3>
 
             <p>
-              Understand missing values, categorical encoding, feature
-              scaling, and why preprocessing must be handled carefully.
+              Cleaning data for machine learning, thinking in linked lists,
+              and how software projects are organized.
             </p>
 
-            <div class="card-footer">
-              <span>Learning notes</span>
-              <a href="articles/preprocessing-pipeline.html">
-                Read article <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-        </article>
+            <ul class="week-topics">
+              <li>Building a reliable preprocessing pipeline</li>
+              <li>Thinking in linked lists</li>
+              <li>Understanding how projects are organized</li>
+            </ul>
 
-        <article class="article-card">
-          <div class="article-visual visual-dsa" aria-hidden="true">
-            <span class="visual-label">DSA / 001</span>
-            <div class="node-chain">
-              <span>01</span>
-              <i></i>
-              <span>02</span>
-              <i></i>
-              <span>03</span>
-            </div>
-            <span class="visual-caption">HEAD → NODE → NEXT</span>
+            <span class="week-link">Open Week 1 <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+
+        <div class="week-card week-card-soon">
+          <div class="week-badge" aria-hidden="true">
+            <span>WEEK</span>
+            <strong>02</strong>
           </div>
 
-          <div class="article-content">
+          <div class="week-body">
             <div class="article-meta">
-              <span class="tag">DATA STRUCTURES</span>
-              <span>PRACTICE</span>
+              <span class="tag">COMING SOON</span>
             </div>
-
-            <h3>Thinking in linked lists</h3>
-
-            <p>
-              Build intuition for node references, pointer manipulation,
-              and common linked-list patterns.
-            </p>
-
-            <div class="card-footer">
-              <span>DSA notes</span>
-              <a href="articles/thinking-in-linked-lists.html">
-                Read article <span aria-hidden="true">↗</span>
-              </a>
-            </div>
+            <h3>Week 2</h3>
+            <p>New notes are on the way.</p>
           </div>
-        </article>
-
-        <article class="article-card">
-          <div class="article-visual visual-code" aria-hidden="true">
-            <span class="visual-label">ENGINEERING / 001</span>
-            <div class="code-decoration">
-              <span>01</span> <i></i><b></b>
-              <span>02</span> <i></i><em></em>
-              <span>03</span> <i></i><b></b>
-              <span>04</span> <i></i><em></em>
-            </div>
-            <span class="visual-caption">WRITE. TEST. IMPROVE.</span>
-          </div>
-
-          <div class="article-content">
-            <div class="article-meta">
-              <span class="tag">ENGINEERING</span>
-              <span>FUNDAMENTALS</span>
-            </div>
-
-            <h3>Understanding how projects are organized</h3>
-
-            <p>
-              Explore source files, version control, and the small
-              decisions that make code easier to maintain.
-            </p>
-
-            <div class="card-footer">
-              <span>Engineering notes</span>
-              <a href="articles/organizing-software-projects.html">
-                Read article <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -386,6 +324,46 @@
           >
             Explore GitHub <span aria-hidden="true">↗</span>
           </a>
+        </div>
+      </div>
+      <div class="container project-grid">
+        <article class="project-card">
+          <div class="article-meta">
+            <span class="tag">IOT · EMBEDDED</span>
+            <span class="project-status">PROTOTYPE IN PROGRESS</span>
+          </div>
+
+          <h3>ESP32 Battery Health Management System</h3>
+
+          <p>
+            An IoT system that tracks battery usage to estimate remaining
+            battery life and monitors temperature, raising an alert when it
+            goes above a set threshold. The design was built and tested in
+            the Wokwi simulator, and I am now wiring the physical prototype
+            around a real 3.7V Li-ion battery.
+          </p>
+
+          <ul class="project-stack" aria-label="Components">
+            <li>ESP32</li>
+            <li>INA219 current/voltage sensor</li>
+            <li>DHT11 temperature sensor</li>
+            <li>TP4056 charging module</li>
+            <li>Relay module</li>
+          </ul>
+
+          <!-- When the code is on GitHub, add a link here, for example:
+               <a href="https://github.com/yasasri-veduru/YOUR-REPO">View on GitHub</a> -->
+          <div class="card-footer">
+            <span>Simulation done · hardware build next</span>
+          </div>
+        </article>
+
+        <div class="project-card project-card-soon">
+          <div class="article-meta">
+            <span class="tag">COMING SOON</span>
+          </div>
+          <h3>More projects on the way</h3>
+          <p>Each project will get its own write-up: the problem, the build, and the lessons.</p>
         </div>
       </div>
     </section>
