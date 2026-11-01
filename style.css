@@ -1407,3 +1407,247 @@ section[id] {
     height: 270px;
   }
 }
+
+/* 20. Weekly log, week page and project cards */
+
+.week-list {
+  display: grid;
+  gap: 16px;
+}
+
+.week-card {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition:
+    transform 0.22s,
+    border-color 0.22s,
+    box-shadow 0.22s;
+}
+
+a.week-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.week-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 24px;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+:root[data-theme="dark"] .week-badge {
+  color: var(--accent);
+}
+
+.week-badge span {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.week-badge strong {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+}
+
+.week-body {
+  min-width: 0;
+  padding: 26px 30px;
+}
+
+.week-body h3 {
+  margin: 14px 0 8px;
+  font-size: 1.55rem;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+}
+
+.week-body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.week-topics {
+  margin: 16px 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.week-topics li {
+  position: relative;
+  padding: 7px 0 7px 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+.week-topics li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateY(-50%);
+}
+
+.week-link {
+  color: var(--accent-hover);
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+:root[data-theme="dark"] .week-link {
+  color: var(--accent);
+}
+
+a.week-card:hover .week-link {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.week-card-soon {
+  border-style: dashed;
+  background: transparent;
+}
+
+.week-card-soon .week-badge {
+  background: transparent;
+  opacity: 0.55;
+}
+
+.week-card-soon .week-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.week-card-soon .week-body h3 {
+  color: var(--muted);
+}
+
+/* Week page */
+
+.week-articles {
+  margin-top: 36px;
+}
+
+/* Projects */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.project-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.project-card h3 {
+  margin: 16px 0 10px;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  letter-spacing: -0.4px;
+}
+
+.project-card p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.project-status {
+  color: var(--muted);
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.project-stack li {
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 650;
+}
+
+.project-card .card-footer {
+  margin-top: auto;
+}
+
+.project-card-soon {
+  justify-content: center;
+  border-style: dashed;
+  background: transparent;
+}
+
+.project-card-soon h3 {
+  color: var(--muted);
+}
+
+.project-card-soon p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 650px) {
+  .week-card {
+    grid-template-columns: 1fr;
+  }
+
+  .week-badge {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 14px 22px;
+  }
+
+  .week-badge strong {
+    font-size: 1.6rem;
+    letter-spacing: -1px;
+  }
+
+  .week-body {
+    padding: 22px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    padding: 22px;
+  }
+}
